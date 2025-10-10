@@ -30,7 +30,7 @@ cp env.example .env
 
 The `.env` file contains environment variables to configure your Docker containers and Bigbrotr services. Here’s a breakdown:
 
-```env
+```bash
 # PostgreSQL and pgAdmin ports
 DB_PORT=5432          # Exposes PostgreSQL database on this port
 PGADMIN_PORT=8080     # Exposes pgAdmin web UI on this port
