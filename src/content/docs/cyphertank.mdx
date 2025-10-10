@@ -1,0 +1,89 @@
+---
+title: CypherTank Submission
+description: BigBrotr - Global Observability Infrastructure for the Nostr Protocol
+---
+
+**Category:** Scientific Breakthroughs (cryptography, distributed systems, etc.)
+
+**Type:** Nonprofit, open-source
+
+**License:** MIT
+
+**GitHub:** [https://github.com/bigbrotr](https://github.com/bigbrotr)
+
+**Website** [https://bigbrotr.com](https://bigbrotr.com)
+
+---
+
+## BigBrotr: Global Observability Infrastructure for the Nostr Protocol
+
+BigBrotr is an open-source, community-driven infrastructure designed to observe, archive, and analyze the **Nostr** protocol — a decentralized, censorship-resistant communication layer emerging from the Bitcoin ecosystem.  
+Its purpose is to provide a transparent and verifiable view of how decentralized communication networks behave in the real world, by continuously collecting, validating, and studying all **public events** exchanged across both clearnet and Tor relays.
+
+In essence, BigBrotr acts as a *black box recorder* for Nostr. It captures the dynamic flow of information within a global peer-to-peer network, allowing anyone to explore how messages propagate, how relays perform, and how the network’s structure evolves over time.  
+Unlike traditional monitoring systems, BigBrotr is entirely distributed, open, and reproducible — enabling a level of transparency and empirical analysis rarely available in decentralized environments.
+
+---
+
+## A Scientific Lens on Decentralization
+
+Decentralized networks like Nostr represent an extraordinary laboratory for understanding the next generation of distributed systems. Yet, their openness and fragmentation make them difficult to study rigorously. BigBrotr was created to bridge this gap, combining **real-time data collection**, **cryptographic verification**, and **network-level analysis** into one coherent observability framework.
+
+Every event gathered by BigBrotr is verified through **secp256k1** cryptography and stored in a structured, queryable database that preserves its full provenance — including the relay through which it was seen and the timestamp of propagation. This approach enables reproducible studies on topics that were previously only theoretical:  
+how information redundancy ensures resilience, how censorship or relay failures affect the flow of messages, and how decentralized topologies naturally emerge and stabilize.
+
+From a methodological standpoint, BigBrotr represents a breakthrough in how decentralized communication systems can be observed and validated scientifically. It transforms a loosely connected network into a measurable, analyzable ecosystem — without compromising privacy or decentralization.
+
+---
+
+## Architecture and Methodology
+
+The architecture of BigBrotr follows a modular, microservices-based design orchestrated through Docker and backed by PostgreSQL for structured data storage.  
+Each service fulfills a distinct function within the broader observability pipeline:  
+a synchronizer that collects and validates events in parallel from hundreds of relays;  
+a finder that autonomously discovers new relays using metadata and public sources;  
+a monitor that continuously measures availability, latency, and compliance with protocol standards (NIP-11, NIP-66);  
+and an integrated Tor proxy that ensures full access to `.onion` relays.
+
+All components are implemented in Python and released under the **MIT license**. No proprietary or cloud-dependent software is used, ensuring that the entire system remains reproducible, transparent, and fully open to public verification.
+
+---
+
+## Relevance to the Bitcoin Ecosystem
+
+Within the Bitcoin landscape, BigBrotr strengthens one of the most critical yet often overlooked layers: decentralized communication.  
+By providing transparent, data-driven insights into how the Nostr network operates, it helps developers, relay operators, and researchers identify weaknesses, optimize performance, and safeguard against centralization risks.
+
+The project has direct practical value. The data and metrics collected by BigBrotr can be used to improve relay selection algorithms, detect spam or Sybil behavior, analyze social graph dynamics, and study the resilience of Nostr as a communication protocol for Bitcoin-aligned communities.  
+Moreover, the infrastructure serves as a foundation for **Data Vending Machines (DVMs)** and other Bitcoin-native services that depend on verifiable, high-quality event data.
+
+Ultimately, BigBrotr reinforces the same principles that define Bitcoin itself — transparency, decentralization, and resistance to censorship — but applied to the domain of digital communication.
+
+---
+
+## Commitment to Open Science and Privacy
+
+BigBrotr is a **nonprofit project** committed to the principles of **open science** and **privacy-preserving transparency**.  
+All source code is public, released under the MIT license, and all datasets are made available under the **Open Database License (ODbL)**.  
+The system collects **only public, signed Nostr events**, never personal or private user data.
+
+The goal is to build a shared scientific infrastructure — a platform that lowers the barrier for anyone wishing to study or improve decentralized systems. In doing so, BigBrotr demonstrates that observability and privacy can coexist: that transparency, when built correctly, strengthens rather than weakens the foundations of digital freedom.
+
+---
+
+## Future Development
+
+BigBrotr continues to evolve as an open, living system.  
+The next milestones include the release of public dashboards to visualize network health in real time, the publication of anonymized datasets and longitudinal statistics, and the creation of open APIs for researchers and developers.  
+Further integrations with **Prometheus** and **Grafana** will enable customizable observability for relay operators, while a **Nostr-native bot** will soon share live relay statistics directly within the protocol itself.
+
+These developments aim to extend the accessibility of the project and empower the community with verifiable insights into the functioning of the decentralized web.
+
+---
+
+## Why CypherTank
+
+CypherTank offers the ideal stage for BigBrotr’s mission. The initiative brings together innovators and researchers who believe in open protocols, scientific rigor, and human freedom — precisely the values that BigBrotr embodies.  
+Presenting the project within this forum means contributing to the strengthening of Bitcoin’s broader ecosystem through research, transparency, and open collaboration.
+
+BigBrotr is more than a monitoring tool. It is a public, scientific infrastructure designed to help society **observe, understand, and preserve** the mechanisms that make decentralized communication — and ultimately Bitcoin itself — a tool for human sovereignty.
