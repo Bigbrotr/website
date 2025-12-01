@@ -1,71 +1,87 @@
-# bigbrotr.com
+# BigBrotr Documentation Website
 
-This repository contains the source code for the website that serves as the public documentation for the Bigbrotr project—a full archive instance for the NOSTR protocol.
+This repository contains the source code for the BigBrotr documentation website—a comprehensive guide for the modular Nostr data archiving and monitoring system.
+
+**Live site**: [bigbrotr.com](https://bigbrotr.com)
 
 ---
 
 ## Technologies Used
 
-- **Astro**: A static site generator for building optimized websites.
-- **TypeScript**: Adds type safety to the development process.
-- **Tailwind CSS**: A utility-first CSS framework for efficient styling.
+- **Astro**: Static site generator for optimized websites
+- **Starlight**: Documentation theme for Astro
+- **TypeScript**: Type-safe development
+
+---
+
+## Documentation Structure
+
+```
+src/content/docs/
+├── index.mdx                    # Landing page
+├── getting-started/             # Quick start, implementations
+├── architecture/                # Core layer, service layer
+├── services/                    # Initializer, Finder, Monitor, Synchronizer
+├── database/                    # Schema, tables, views
+├── configuration/               # Core and service configuration
+└── resources/                   # FAQ, contributing guide
+```
 
 ---
 
 ## Getting Started
 
-To run the website locally, follow these steps:
+### Prerequisites
 
-1. Clone the repository:
+- Node.js 18+
+- npm
 
-   ```bash
-   git clone https://github.com/VincenzoImp/bigbrotr.com.git
-   cd bigbrotr.com
-   ```
+### Local Development
 
-2. Install dependencies:
+```bash
+# Clone the repository
+git clone https://github.com/bigbrotr/website.git
+cd website
 
-   ```bash
-   npm install
-   ```
+# Install dependencies
+npm install
 
-3. Start the development server:
+# Start development server
+npm run dev
+```
 
-   ```bash
-   npm run dev
-   ```
+The website will be accessible at `http://localhost:4321`.
 
-The website should now be accessible at `http://localhost:4321`.
+### Build for Production
+
+```bash
+npm run build
+npm run preview  # Preview the build
+```
 
 ---
 
 ## Deployment
 
-The website is deployed using Vercel for fast and seamless hosting. Any updates pushed to the main branch will automatically trigger a deployment.
+The website is deployed on Vercel. Updates to the main branch automatically trigger deployment.
+
+---
+
+## Related Repositories
+
+- **Main Project**: [github.com/bigbrotr/bigbrotr](https://github.com/bigbrotr/bigbrotr)
 
 ---
 
 ## Contributing
 
-We welcome contributions to improve the website! To get started:
-
-1. Fork the repository.
-2. Create a new branch for your changes.
-3. Make your changes and commit them.
-4. Push your branch and create a pull request.
-
-Please ensure that your code follows the project's guidelines and passes all checks before submitting.
+1. Fork the repository
+2. Create a feature branch: `git checkout -b docs/my-improvement`
+3. Make changes and commit: `git commit -m "docs: improve X section"`
+4. Push and create a pull request
 
 ---
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
----
-
-## Contact
-
-If you have any questions or suggestions, feel free to open an issue or reach out to the project maintainer.
-
----
+MIT License - see [LICENSE](LICENSE) for details.
