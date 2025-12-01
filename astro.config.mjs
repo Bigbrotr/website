@@ -4,29 +4,60 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://bigbrotr.com',
 	integrations: [
 		starlight({
-			title: 'Bigbrotr',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/VincenzoImp/bigbrotr' }],
+			title: 'BigBrotr',
+			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/bigbrotr/bigbrotr' }],
 			sidebar: [
 				{
-					label: 'Guides',
+					label: 'Getting Started',
 					items: [
-						{ label: 'Getting Started', slug: 'guides/getting-started' },
-						{ label: 'System Architecture', slug: 'guides/system-architecture' },
-						{ label: 'Database Schema', slug: 'guides/database-schema' },
+						{ label: 'Introduction', slug: 'getting-started/introduction' },
+						{ label: 'Quick Start', slug: 'getting-started/quick-start' },
+						{ label: 'Implementations', slug: 'getting-started/implementations' },
 					],
 				},
 				{
-					label: 'API',
+					label: 'Architecture',
 					items: [
-						{ label: 'Bigbrotr', slug: 'api/bigbrotr' },
-						{ label: 'Event', slug: 'api/event' },
-						{ label: 'Relay', slug: 'api/relay' },
-						{ label: 'Relay Metadata', slug: 'api/relay-metadata' },
-						{ label: 'Utils', slug: 'api/utils' },
+						{ label: 'Overview', slug: 'architecture/overview' },
+						{ label: 'Core Layer', slug: 'architecture/core-layer' },
+						{ label: 'Service Layer', slug: 'architecture/service-layer' },
 					],
-				}
+				},
+				{
+					label: 'Services',
+					items: [
+						{ label: 'Initializer', slug: 'services/initializer' },
+						{ label: 'Finder', slug: 'services/finder' },
+						{ label: 'Monitor', slug: 'services/monitor' },
+						{ label: 'Synchronizer', slug: 'services/synchronizer' },
+					],
+				},
+				{
+					label: 'Database',
+					items: [
+						{ label: 'Schema Overview', slug: 'database/schema' },
+						{ label: 'Tables', slug: 'database/tables' },
+						{ label: 'Views & Procedures', slug: 'database/views-procedures' },
+					],
+				},
+				{
+					label: 'Configuration',
+					items: [
+						{ label: 'Overview', slug: 'configuration/overview' },
+						{ label: 'Core Configuration', slug: 'configuration/core' },
+						{ label: 'Service Configuration', slug: 'configuration/services' },
+					],
+				},
+				{
+					label: 'Resources',
+					items: [
+						{ label: 'FAQ', slug: 'resources/faq' },
+						{ label: 'Contributing', slug: 'resources/contributing' },
+					],
+				},
 			],
 		}),
 	],
