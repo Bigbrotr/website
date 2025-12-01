@@ -1,92 +1,127 @@
 ---
-title: Bigbrotr
-description: Full archive & monitoring system for the Nostr protocol
+title: BigBrotr
+description: A modular Nostr data archiving and monitoring system
 template: splash
 hero:
-  tagline: Full archive & monitoring system for the Nostr protocol
+  tagline: Enterprise-grade infrastructure for indexing, monitoring, and analyzing the Nostr protocol ecosystem
   image:
     file: ../../assets/logo.webp
   actions:
-    - text: Getting Started
-      link: /guides/getting-started/
+    - text: Quick Start
+      link: /getting-started/quick-start/
       icon: right-arrow
-    - text: Read the Docs
-      link: /api/bigbrotr/
-      icon: right-arrow
+    - text: View on GitHub
+      link: https://github.com/bigbrotr/bigbrotr
+      icon: github
       variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## What is Bigbrotr?
+## What is BigBrotr?
 
-**Bigbrotr** is an advanced, open-source, and modular infrastructure built for the [Nostr](https://nostr.com) protocol. It is designed to comprehensively archive *all public events* across the entire network—both clearnet and Tor relays—while providing deep insights into relay behavior, event redundancy, and user interaction patterns.
+**BigBrotr** is a production-ready, modular system for archiving and monitoring the [Nostr protocol](https://nostr.com) ecosystem. Built with Python 3.9+ and PostgreSQL 16+, it provides comprehensive tools for relay discovery, health monitoring, and event synchronization across both clearnet and Tor networks.
 
-Think of Bigbrotr as a “black box” recorder for Nostr: continuously collecting, mapping, and analyzing everything happening across relays in real time. Unlike solutions that focus on isolated protocol features, Bigbrotr functions as a full-archive instance of the entire network, offering structured metadata and powerful analytical tools tailored for developers, researchers, relay operators, and users alike.
-
-With a mission to improve transparency, enable open research, and foster true decentralization, Bigbrotr empowers the community by providing unparalleled visibility and archival capabilities within the Nostr ecosystem—serving as a foundational tool to strengthen and support the decentralized network.
-
----
-
-## Core Features
-
-- 🗂 **Full Event Archive**: Chronologically stores all events from every reachable relay.
-- 🌍 **Relay Mapping**: Detects and indexes new relays using historical snapshots and live discovery (e.g. Nostr.Watch).
-- 🛰 **Live Monitoring**: Measures relay health and connectivity daily (RTT, availability, NIP-11 support).
-- 🔍 **Redundancy Tracking**: Tracks which relays host each event, revealing true network distribution.
-- 🧅 **Tor-Enabled**: Built-in Tor support for full `.onion` relay access.
-- 🧠 **Graph Analysis Ready**: Ideal for social graph and protocol research, spam detection, and more.
-- 🧾 **DVM Integration Ready**: Easily integrates with Nostr-native Data Vending Machines to provide custom data services and insights.
+BigBrotr follows a **three-layer architecture** that separates concerns and enables maximum flexibility:
+- **Core Layer**: Reusable infrastructure components (connection pooling, database interface, logging)
+- **Service Layer**: Business logic and service orchestration (Finder, Monitor, Synchronizer)
+- **Implementation Layer**: Deployment-specific configuration (BigBrotr full-featured, LilBrotr lightweight)
 
 ---
 
-## Get Involved
+## Key Features
 
 <CardGrid stagger>
-	<Card title="Getting Started" icon="rocket">
-		Spin up your own Bigbrotr instance and start archiving the Nostr universe in minutes. [Follow the setup guide →](/guides/getting-started/)
-	</Card>
-	<Card title="Read the Documentation" icon="document">
-		Dive into the data model, synchronization logic, and modular architecture powering Bigbrotr. [Explore the docs →](/api/bigbrotr/)
-	</Card>
-	<Card title="Explore on GitHub" icon="github">
-		Check out the source code, report issues, or contribute to the FOSS ecosystem. [Visit the repository →](https://github.com/VincenzoImp/bigbrotr/)
-	</Card>
-	<Card title="Explore the Architecture" icon="setting">
-		Learn how the Docker containers work together to find, monitor, and archive the Nostr network. [Architecture guide →](/guides/system-architecture/)
-	</Card>
-	<Card title="Explore the Database Schema" icon="seti:db">
-		View how Bigbrotr organizes and stores Nostr events, relays, and metadata. [Database guide →](https://bigbrotr.com/guides/database-schema/)
-	</Card>
+  <Card title="Relay Discovery" icon="magnifier">
+    Automatically discover Nostr relays from public APIs (nostr.watch) and seed lists. Track over **8,800+ relays** across clearnet and Tor networks.
+  </Card>
+  <Card title="Health Monitoring" icon="heart">
+    Continuous NIP-11 and NIP-66 compliance testing with round-trip time (RTT) measurements. Monitor relay capabilities: openable, readable, writable.
+  </Card>
+  <Card title="Event Synchronization" icon="rocket">
+    High-performance multicore event collection using `aiomultiprocess`. Incremental sync with per-relay timestamp tracking for efficient updates.
+  </Card>
+  <Card title="Tor Network Support" icon="shield">
+    Full support for `.onion` relay addresses via SOCKS5 proxy. Separate timeout configurations for Tor relays.
+  </Card>
+  <Card title="Data Deduplication" icon="document">
+    Content-addressed storage for NIP-11/NIP-66 documents. BYTEA storage for event IDs provides **50% space savings** vs hex strings.
+  </Card>
+  <Card title="SQL Analytics" icon="seti:db">
+    Pre-built views for statistics, event analysis, and relay metrics. Ready-to-query analytics without complex SQL.
+  </Card>
 </CardGrid>
 
 ---
 
-## Why It Matters
+## Two Implementations, One Codebase
 
-Nostr’s decentralized nature eliminates any central authority, granting unprecedented freedom but also creating challenges around network visibility, coordination, and data integrity. Bigbrotr addresses these challenges by serving as a comprehensive, transparent “black box” archive of the entire Nostr ecosystem.
+BigBrotr's architecture enables multiple deployment configurations from the same codebase:
 
-By continuously monitoring and archiving every public event across clearnet and Tor relays, Bigbrotr provides critical insights into relay health, event redundancy, and network topology. This empowers developers, researchers, relay operators, and users to:
+| Implementation | Storage | Tor Support | Use Case |
+|----------------|---------|-------------|----------|
+| **BigBrotr** | Full (id, pubkey, created_at, kind, tags, content, sig) | Enabled | Complete archiving with full event data |
+| **LilBrotr** | Essential (id, pubkey, created_at, kind, sig) | Disabled | Lightweight indexing without heavy content |
 
-- Understand relay uptime, behavior, and real-world performance metrics  
-- Detect and prevent centralization risks by discovering and mapping new relays  
-- Access structured data and metadata ideal for social graph analysis, spam detection, and protocol research  
-- Preserve valuable historical network data before it disappears  
-- Facilitate custom integrations and advanced services like Data Vending Machines (DVMs) built on top of Bigbrotr’s data  
-
-Built by and for the FOSS community, Bigbrotr is MIT licensed and designed to foster a transparent, open, and truly decentralized Nostr ecosystem.
-
+Both implementations index all events - LilBrotr simply omits the storage-heavy `tags` and `content` fields, saving ~60% disk space while retaining core event metadata for analytics and queries.
 
 ---
-## Next Steps
 
-- 📊 Develop interactive dashboards for real-time visual insights into relay and network activity  
-- 🧪 Provide a public API enabling real-time queries and detailed relay health monitoring  
-- 🛠 Enable exportable metrics to help relay operators optimize performance and reliability  
-- 💬 Build a Nostr bot that shares up-to-date relay statistics and network health information  
-- 🧰 Integrate with Grafana and offer custom Prometheus endpoints for advanced metrics visualization  
-- 🌐 Launch a public explorer to browse relay statuses and archived events effortlessly
-- 📦 Offer downloadable data snapshots to support researchers and data scientists  
-- 🏗️ Create Data Vending Machines leveraging Bigbrotr’s comprehensive data archive for tailored Nostr-native data services  
+## Technology Stack
 
-This roadmap aims to enhance transparency, empower the community, and extend Bigbrotr’s capabilities as a foundational tool for the evolving Nostr ecosystem.
+| Technology | Purpose |
+|------------|---------|
+| **Python 3.9+** | Primary programming language |
+| **PostgreSQL 16+** | Primary data storage with PGBouncer pooling |
+| **asyncpg** | High-performance async PostgreSQL driver |
+| **Pydantic** | Configuration validation and type safety |
+| **aiomultiprocess** | Multicore async processing |
+| **Docker** | Containerized deployment |
+
+---
+
+## Get Started
+
+<CardGrid>
+  <Card title="Quick Start" icon="rocket">
+    Deploy BigBrotr in minutes with Docker Compose. [Get started →](/getting-started/quick-start/)
+  </Card>
+  <Card title="Architecture" icon="setting">
+    Understand the three-layer architecture and design patterns. [Learn more →](/architecture/overview/)
+  </Card>
+  <Card title="Services" icon="list-format">
+    Explore the Initializer, Finder, Monitor, and Synchronizer services. [View services →](/services/initializer/)
+  </Card>
+  <Card title="Database" icon="seti:db">
+    Learn about the schema, tables, views, and stored procedures. [View schema →](/database/schema/)
+  </Card>
+</CardGrid>
+
+---
+
+## Roadmap
+
+### Completed (v2.0.0)
+- Three-layer modular architecture
+- Core layer (Pool, Brotr, BaseService, Logger)
+- All services (Initializer, Finder, Monitor, Synchronizer)
+- Async database with asyncpg + PGBouncer
+- Docker Compose deployment
+- 174 unit tests with full type hints
+
+### Planned
+- REST API service with OpenAPI documentation
+- NIP-90 Data Vending Machine (DVM) support
+- Prometheus metrics export
+- Admin dashboard
+- Database backup automation
+
+---
+
+## Community
+
+BigBrotr is open source under the MIT license. Contributions are welcome!
+
+- [GitHub Repository](https://github.com/bigbrotr/bigbrotr)
+- [Contributing Guide](/resources/contributing/)
+- [FAQ](/resources/faq/)
